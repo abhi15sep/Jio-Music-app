@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src gap://ready file://* *; style-src 'self' http://* https://* 'unsafe-inline'; script-src 'self' http://* https://* 'unsafe-inline'">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Abhay's Gaana</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+    }
+
+    #toolbar {
+      position: absolute;
+      z-index: 999;
+      right: 15px;
+      top: 25px;
+    }
+
+    webview {
+      height: 100vh;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="toolbar">
+    <button onclick="webview.goBack()">&lt;</button>
+    <button onclick="webview.goForward()">&gt;</button>
+    <button onclick="webview.reload()">&#x21bb;</button>
+  </div>
+  <webview src="https://www.jiosaavn.com"></webview>
+
+  <script>
+    let webview = document.querySelector('webview');
+    webview.addEventListener('did-start-loading', function () {
+      document.querySelector('#toolbar').style.display = 'none';
+    });
+
+    webview.addEventListener('did-stop-loading', function () {
+      document.querySelector('#toolbar').style.display = 'block';
+    });
+
+  </script>
+</body>
+
+</html>
